@@ -1,0 +1,39 @@
+@import '../Colours.scss';
+
+.gameOverWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+.gameOverWrapper h1 {
+    color: $white;
+    font-size: 48px;
+}
+
+.gameOverWrapper h2 {
+    color: $white;
+    font-size: 32px;
+}
+
+.goButton {
+    background-color: $white;
+    border: 1px solid $barelyWhite;
+    border-radius: 6px;
+    box-shadow: 5px 5px 10px -5px rgba(0,0,0,0.4);
+    color: $twitterBlue53;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 16px;
+    margin-top: 32px;
+    padding: 24px;
+    transition: box-shadow 200ms ease-out;
+    width: 240px;
+
+    &:hover {
+        box-shadow: 5px 5px 50px -5px rgba(0,0,0,0.4);
+    }
+}

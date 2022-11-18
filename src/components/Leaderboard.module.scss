@@ -1,0 +1,53 @@
+@import '../Colours.scss';
+
+.leaderboardWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+.tableContainer {
+    background-color: $white;
+    border: 1px solid $barelyWhite;
+    border-radius: 6px;
+    box-shadow: 5px 5px 10px -5px rgba(0,0,0,0.4);
+    margin: 0 auto;
+    width: 800px;
+    padding: 24px;
+}
+
+.tableContainer table {
+    width: 100%;
+}
+
+.tableContainer th, .tableContainer td {
+    font-size: 20px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.tableContainer td {
+    border-top: solid 1px $barelyWhite;
+}
+
+.goButton {
+    background-color: $white;
+    border: 1px solid $barelyWhite;
+    border-radius: 6px;
+    box-shadow: 5px 5px 10px -5px rgba(0,0,0,0.4);
+    color: $twitterBlue53;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 16px;
+    margin-top: 32px;
+    padding: 24px;
+    transition: box-shadow 200ms ease-out;
+    width: 240px;
+
+    &:hover {
+        box-shadow: 5px 5px 50px -5px rgba(0,0,0,0.4);
+    }
+}

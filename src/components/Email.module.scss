@@ -1,0 +1,58 @@
+@import '../Colours.scss';
+
+.backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.popupWrapper.hidden {
+    -webkit-animation: fadeOut 200ms;
+    animation: fadeOut 200ms;
+    animation-fill-mode: forwards;
+}
+
+.popup {
+    background-color: $white;
+    border: 1px solid $barelyWhite;
+    border-radius: 6px;
+    left: 50%;
+    padding: 24px;
+    padding-bottom: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    z-index: 2;
+}
+
+.popupClose {
+    cursor: pointer;
+    float: right;
+    font-family: cursive;
+    font-weight: bolder;
+}
+
+.popupHeader p {
+    margin-bottom: 4px;
+}
+
+.popupBody p {
+    margin-bottom: 16px;
+    text-align: justify;
+}
+
+@-webkit-keyframes fadeOut {
+    0% { opacity: 1;}
+    99% { opacity: 0.01;width: 100%;}
+    100% { opacity: 0;width: 0;}
+}  
+@keyframes fadeOut {
+    0% { opacity: 1;}
+    99% { opacity: 0.01;width: 100%;}
+    100% { opacity: 0;width: 0;}
+}

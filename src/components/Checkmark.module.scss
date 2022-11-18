@@ -1,0 +1,99 @@
+@import "../Colours.scss";
+
+$checkmarkTransition: filter 200ms ease, opacity 200ms ease, width 200ms ease,
+    height 200ms ease;
+
+.checkmark, .placeholderCheckmark {
+    height: 200px;
+    position: absolute;
+    width: 200px;
+    user-select: none;
+    z-index: 9;
+    transition: $checkmarkTransition;
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0.4));
+    cursor: pointer;
+
+    transform: translate(-50%, -50%);
+    & > path:first-child {
+        transition: fill 200ms ease;
+    }
+    & > path {
+        transition: opacity 200ms ease;
+    }
+
+    &.goingHome {
+        transition: $checkmarkTransition, left 200ms ease, top 200ms ease;
+    }
+    &:not(.goingHome):not(.byName) {
+        filter: drop-shadow(0 0 50px rgba(0, 0, 0, 0.4));
+    }
+
+    &.slightShrink {
+        width: 175px;
+        height: 175px;
+    }
+
+    &.byName {
+        transition: $checkmarkTransition, width 500ms ease, height 500ms ease,
+            left 500ms ease, top 500ms ease;
+        width: 24px;
+        height: 24px;
+    }
+    &.incorrect {
+        & > path:first-child {
+            fill: $red50;
+        }
+        & > path:nth-child(2) {
+            opacity: 0;
+        }
+        & > path:last-child {
+            opacity: 1;
+        }
+    }
+}
+
+.placeholderCheckmark {
+    filter: none !important;
+    opacity: .5;
+    cursor: unset;
+    & path {
+        fill: $twitterBlue70;
+        stroke: $twitterBlue70;
+    }
+}
+
+$dragmeTranslate: translate(120px, -50px);
+.dragme {
+    position: absolute;
+    height: 100px;
+    transition: 200ms opacity ease;
+
+    animation: 3000ms infinite wobble;
+}
+
+@keyframes wobble {
+    0% {
+        transform: $dragmeTranslate;
+    }
+    40% {
+        transform: $dragmeTranslate;
+    }
+    45% {
+        transform: $dragmeTranslate rotate(-5deg);
+    }
+    50% {
+        transform: $dragmeTranslate rotate(15deg);
+    }
+    55% {
+        transform: $dragmeTranslate rotate(-15deg);
+    }
+    60% {
+        transform: $dragmeTranslate rotate(5deg);
+    }
+    65% {
+        transform: $dragmeTranslate;
+    }
+    100% {
+        transform: $dragmeTranslate;
+    }
+}

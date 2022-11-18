@@ -1,0 +1,55 @@
+@import "../Colours.scss";
+
+$height: 48px;
+$heightSmall: 36px;
+
+.progress {
+    width: 500px;
+    max-width: 90vw;
+
+    height: $height;
+    @media only screen and (max-width: 540px) {
+        height: $heightSmall;
+    }
+    background-color: $twitterBlue40;
+    border-radius: 24px;
+    position: relative;
+    margin: 0 auto 32px;
+    border: 2px solid $white;
+
+    &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        border-radius: inherit;
+        width: calc((var(--progress) * 100%) - 6px);
+        left: 3px;
+        top: 3px;
+        height: calc(100% - 6px);
+
+        transition: 150ms width;
+
+        background-color: $twitterBlue;
+    }
+}
+
+.label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    max-width: 100%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+
+    z-index: 0;
+
+    color: $white;
+    z-index: 1;
+    font-weight: 500;
+    font-size: 32;
+
+    line-height: $height;
+    @media only screen and (max-width: 540px) {
+        line-height: $heightSmall;
+    }
+}

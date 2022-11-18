@@ -1,0 +1,41 @@
+@import "../Colours.scss";
+
+.wrap {
+    margin: 32px auto -32px;
+    padding: 0 32px;
+    max-width: 1152px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.score {
+    margin-left: auto;
+    background-color: $white;
+    color: $twitterBlue;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 1.2em;
+    box-shadow: 2px 2px 15px -5px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.popup {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 48px;
+    height: 48px;
+    fill: $white;
+
+    &.run {
+        animation: 1s popup;
+    }
+}
+
+@keyframes popup {
+    0% {transform: translate(-120%, -10px); opacity: 0;}
+    15% {transform: translate(-120%, 0px); opacity: 1;}
+    100% {transform: translate(-120%, -60px); opacity: 0;}
+}
