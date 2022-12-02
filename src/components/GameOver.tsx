@@ -14,11 +14,12 @@ const messages = [
 ];
 
 interface GameOverProps {
+    originalRelease: boolean;
     proceed(): void;
 }
 
 function GameOver(props: GameOverProps) {
-    const { proceed } = props;
+    const { originalRelease, proceed } = props;
 
     const selectedMessage =
         messages[Math.floor(Math.random() * messages.length)];
@@ -26,7 +27,11 @@ function GameOver(props: GameOverProps) {
     return (
         <div className={styles.gameOverWrapper}>
             <h1>Game Over!</h1>
-            <h2>{selectedMessage}</h2>
+            {
+                originalRelease
+                    ? <h2>{selectedMessage}</h2>
+                    : null
+            }
             <button className={styles.goButton} onClick={proceed}>
                 View Leaderboard
             </button>

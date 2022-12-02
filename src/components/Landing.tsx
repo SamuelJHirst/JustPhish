@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Email from "./Email";
+import HowToPlay from "./HowToPlay";
 import styles from "./Landing.module.scss";
 
 interface LandingProps {
+    originalRelease: boolean;
     start(): void;
     twitterHandle: string;
     setTwitterHandle(twitterHandle: string): void;
@@ -12,8 +14,8 @@ let emailHiddenEver = false;
 let imageFlip = Math.random() < 0.1;
 
 function Landing(props: LandingProps) {
-    const { start, twitterHandle, setTwitterHandle } = props;
-
+    const { originalRelease, start, twitterHandle, setTwitterHandle } = props;
+    
     const [emailVisible, setEmailVisible] = useState<boolean>(!emailHiddenEver);
     const [emailHidden, setEmailHidden] = useState<boolean>(false);
 
@@ -36,7 +38,7 @@ function Landing(props: LandingProps) {
                     className={styles.logo}
                     src="/photo-white-512.png"
                     style={{
-                        transform: imageFlip ? 'scaleX(-1)' : 'none',
+                        transform: imageFlip && originalRelease ? 'scaleX(-1)' : 'none',
                     }}
                 />
                 <h1 className={styles.welcomeText}>Welcome to {process.env.REACT_APP_NAME}*</h1>
@@ -72,8 +74,14 @@ function Landing(props: LandingProps) {
                     Start Game
                 </button>
             </div>
-            {emailHidden || emailHiddenEver ? null : (
+            {!originalRelease || emailHidden || emailHiddenEver ? null : (
                 <Email
+                    close={() => setEmailVisible(false)}
+                    visible={emailVisible}
+                />
+            )}
+            {originalRelease || emailHidden || emailHiddenEver ? null : (
+                <HowToPlay
                     close={() => setEmailVisible(false)}
                     visible={emailVisible}
                 />

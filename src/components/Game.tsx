@@ -18,9 +18,11 @@ const HISTORY_SIZE = 30;
 
 const Game = ({
     end,
+    originalRelease,
     twitterHandle,
 }: {
     end(): void;
+    originalRelease: boolean;
     twitterHandle: string;
 }) => {
     const networkState = useRef<number>(0);
@@ -316,7 +318,7 @@ const Game = ({
             ) : null}
             <div ref={spaceRef} style={{ flexGrow: 1 }} />
             <Progress level={Math.floor(progress)} progress={progress % 1} />
-            <Warning visible={warningVisible} />
+            <Warning visible={warningVisible && originalRelease} />
         </>
     );
 };

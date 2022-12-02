@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import styles from "./App.module.scss";
 import Game from "./Game";
 import GameOver from "./GameOver";
@@ -6,17 +7,32 @@ import Landing from "./Landing";
 import Leaderboard from "./Leaderboard";
 
 const App = () => {
+    const search = useLocation().search;
+    const useOriginalRelease = new URLSearchParams(search).get("useOriginalRelease");
+
     const [gameState, setGameState] = useState<"START" | "GAMEPLAY" | "GAMEOVER" | "END">(
         "START"
     );
+    const [originalRelease, setOriginalRelease] = useState<boolean>(false);
     const [twitterHandle, setTwitterHandle] = useState<string>('');
+
+    useEffect(() => {
+        if (useOriginalRelease === 'true') {
+            setOriginalRelease(true);
+        }
+    }, []);
 
     return (
         <div className={styles.page}>
-            <div className={styles.banner}>TWITTER INTERNAL</div>
+            {
+                originalRelease
+                ? <div className={styles.banner}>TWITTER INTERNAL</div>
+                : null
+            }
 
             {gameState === "START" ? (
                 <Landing
+                    originalRelease={originalRelease}
                     start={() => setGameState("GAMEPLAY")}
                     twitterHandle={twitterHandle}
                     setTwitterHandle={setTwitterHandle}
@@ -24,10 +40,14 @@ const App = () => {
             ) : gameState === "GAMEPLAY" ? (
                 <Game
                     end={() => setGameState("GAMEOVER")}
+                    originalRelease={originalRelease}
                     twitterHandle={twitterHandle}
                 />
             ) : gameState === "GAMEOVER" ? (
-                <GameOver proceed={() => setGameState("END")} />
+                <GameOver
+                    originalRelease={originalRelease}
+                    proceed={() => setGameState("END")}
+                />
             ) : (
                 <Leaderboard restart={() => setGameState("START")} />
             )}
