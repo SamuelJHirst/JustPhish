@@ -218,7 +218,7 @@ const Game = ({
         setCompany((oldC) => {
             setOldCompany(oldC);
             return {
-                company_id: resp.company_id,
+                company_id: resp.id,
                 name: resp.name,
                 handle: resp.handle,
                 picture: resp.picture,
@@ -240,7 +240,7 @@ const Game = ({
                     quote_tweets: resp.tweets[0].quote_tweets,
                     retweets: resp.tweets[0].retweets,
                 },
-                tweet_id: resp.tweets[0].id_num,
+                tweet_id: resp.tweets[0].id,
                 vibe: resp.tweets[0].vibe,
             };
         });
@@ -257,13 +257,13 @@ const Game = ({
                     quote_tweets: resp.tweets[1].quote_tweets,
                     retweets: resp.tweets[1].retweets,
                 },
-                tweet_id: resp.tweets[1].id_num,
+                tweet_id: resp.tweets[1].id,
                 vibe: resp.tweets[1].vibe,
             };
         });
 
-        T_HISTORY.push(resp.tweets[0].id_num);
-        T_HISTORY.push(resp.tweets[1].id_num);
+        T_HISTORY.push(resp.tweets[0].id);
+        T_HISTORY.push(resp.tweets[1].id);
         while (T_HISTORY.length > HISTORY_SIZE) T_HISTORY.shift();
 
         networkState.current = 2;

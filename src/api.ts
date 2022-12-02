@@ -19,13 +19,14 @@ export const submitResponse = (
 export const getQuestion = (
     history: string[]
 ): Promise<{
+    id: string;
     name: string;
     handle: string;
     picture: string;
     followers: number;
     following: number;
     joined_date: string;
-    company_id: string;
+    company: string;
     tweets: {
         body: string;
         vibe: string;
@@ -35,7 +36,7 @@ export const getQuestion = (
         likes: number;
         date: string;
         attachment: string;
-        id_num: string;
+        id: string;
     }[];
 }> => {
     return fetch(process.env.REACT_APP_SERVER_URL + "/getQuestion", {
